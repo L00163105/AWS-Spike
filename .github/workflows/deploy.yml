@@ -18,7 +18,7 @@ jobs:
       - uses: actions/upload-artifact@v2
         with:
           name: Package
-          path: staging
+          path: target/
 
   deploy:
     name: Deploy to elastic beanstalk
@@ -28,7 +28,7 @@ jobs:
       - uses: actions/download-artifact@v1
         with:
           name: Package
-          path: staging/
+          path: target/
       - name: Deploy to EB
         uses: einaregilsson/beanstalk-deploy@v16
         with:
@@ -38,4 +38,4 @@ jobs:
           environment_name: SMLWIN21
           version_label: ${{github.SHA}}
           region: eu-west-1
-          deployment_package: Package/githubactionsspike-0.0.1-SNAPSHOT.jar
+          deployment_package: target/githubactionsspike-0.0.1-SNAPSHOT.jar
