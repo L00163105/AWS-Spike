@@ -1,4 +1,8 @@
 pipeline {
+
+  def buildNumber = env.BUILD_ID
+  def buildUrl = env.JENKINS_URL
+
   agent any
   tools {
     maven 'maven_3.6.1'
@@ -6,7 +10,6 @@ pipeline {
   stages {
     stage('Build the application') {
       steps {
-        echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL}"
         sh 'mvn install'
       }
     }
@@ -17,7 +20,7 @@ pipeline {
     }
     stage('deploy') {
       steps {
-        echo "This is the deploy step"
+        echo "This is the deploy step " + buildNumber
       }
     }
   }
