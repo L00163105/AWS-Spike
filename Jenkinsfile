@@ -4,9 +4,9 @@ pipeline {
     maven 'maven_3.6.1'
   }
   stages {
-    echo $BRANCH_NAME
     stage('Build the application') {
       steps {
+        echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL}"
         sh 'mvn install'
       }
     }
