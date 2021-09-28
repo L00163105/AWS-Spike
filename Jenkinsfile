@@ -4,15 +4,15 @@ pipeline {
     maven 'maven_3.6.1'
   }
   stages {
-    stage('build') {
+    stage('Build the application') {
       steps {
-        echo "This is my buid step"
-        sh 'mvn --version'
+        echo "Build the application"
+        sh 'mvn install'
       }
     }
-    stage('package') {
+    stage('Run tests') {
       steps {
-        echo "This is the package step"
+        echo "Run tests"
       }
     }
     stage('deploy') {
