@@ -6,13 +6,12 @@ pipeline {
   stages {
     stage('Build the application') {
       steps {
-        echo "Build the application"
         sh 'mvn install'
       }
     }
     stage('Run tests') {
       steps {
-        echo "Run tests"
+        sh 'mvn test'
       }
     }
     stage('deploy') {
