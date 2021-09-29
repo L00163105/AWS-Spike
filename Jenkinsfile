@@ -1,6 +1,6 @@
 pipeline {
 
-  def branch = env.BRANCH_NAME;
+  def branch = env.BRANCH_NAME
   def buildNumber = env.BUILD_ID
   def buildUrl = env.JENKINS_URL
 
