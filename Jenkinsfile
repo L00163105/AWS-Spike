@@ -1,5 +1,6 @@
 pipeline {
 
+  def branch = env.BRANCH_NAME;
   def buildNumber = env.BUILD_ID
   def buildUrl = env.JENKINS_URL
 
@@ -21,6 +22,7 @@ pipeline {
     stage('deploy') {
       steps {
         echo "This is the deploy step " + buildNumber
+        echo "This is the deploy step " + branch
       }
     }
   }
