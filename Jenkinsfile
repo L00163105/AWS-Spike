@@ -1,7 +1,7 @@
-pipeline {
-
 def buildNumber = env.BUILD_ID
 def buildUrl = env.JENKINS_URL
+
+pipeline {
 
   agent any
   tools {
