@@ -22,7 +22,7 @@ pipeline {
       steps {
         echo "This is the deploy step " + buildUrl
         echo "This is the deploy step " + buildNumber
-        echo "This is the deploy step " + BRANCH_NAME
+        echo "This is the deploy step " + env.BRANCH_NAME
       }
     }
   }
