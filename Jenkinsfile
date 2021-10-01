@@ -25,13 +25,13 @@ pipeline {
       }
     }
 
-    stage('Deploy to test') {
+    stage('Security Scan') {
       steps {
         echo "Deploying to test"
       }
     }
 
-    stage('deploy') {
+    stage('Deploy to Production') {
       steps {
         echo "Deploying to production " + buildUrl
       }
