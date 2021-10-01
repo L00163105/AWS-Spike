@@ -30,5 +30,17 @@ pipeline {
         echo "Deploying to test"
       }
     }
+
+//    var master = env.BRANCH_NAME == "master"
+//
+    stage('Deploy') {
+      steps {
+//        if(master) {
+          echo "Deploying to production"
+//        } else {
+//          echo "Deploying to test"
+//        }
+      }
+    }
   }
 }
