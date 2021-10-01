@@ -19,13 +19,14 @@ pipeline {
       }
     }
 
-    stage('Run adfg') {
-      parallel firstBranch: {
-        echo "This is the deploy step"
-      }, secondBranch: {
-        echo "This is the deploy step "
-      },
-          failFast: true|false
+    stage('Example Stage 1') {
+      steps {
+        parallel(
+            "step 1": { echo "hello" },
+            "step 2": { echo "world" },
+            "step 3": { echo "world" }
+        )
+      }
     }
 
     stage('deploy') {
