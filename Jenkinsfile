@@ -19,11 +19,11 @@ pipeline {
       }
     }
 
-    parallel Generte-Sonar-Reports: {
+    parallel performSonarAnalysis: {
       steps {
         echo "This is the deploy step " + buildUrl
       }
-    }, Build-docker-image-and-push: {
+    }, buildAndPushDockerImage: {
       steps {
         echo "This is the deploy step " + buildUrl
       }
