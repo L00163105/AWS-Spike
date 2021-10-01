@@ -4,36 +4,36 @@ def buildUrl = env.JENKINS_URL
 pipeline {
 
   agent any
+
   tools {
     maven 'maven_3.6.1'
   }
+
   stages {
     stage('Build the application') {
       steps {
-        sh 'mvn clean install -DskipTests'
-      }
-    }
-    stage('Run tests') {
-      steps {
-        sh 'mvn test'
+        sh 'mvn clean install'
       }
     }
 
-    stage('Example Stage 1') {
+    stage('Reporting') {
       steps {
         parallel(
-            "step 1": { echo "hello" },
-            "step 2": { echo "world" },
-            "step 3": { echo "world" }
+            "Sonar Analysis": { echo "perform sonar analysis" },
+            "Build/Deploy Docker Image": { echo "world" },
         )
+      }
+    }
+
+    stage('Deploy to test') {
+      steps {
+        echo "Deploying to test"
       }
     }
 
     stage('deploy') {
       steps {
-        echo "This is the deploy step " + buildUrl
-        echo "This is the deploy step " + buildNumber
-        echo "This is the deploy step " + env.BRANCH_NAME
+        echo "Deploying to production " + buildUrl
       }
     }
   }
