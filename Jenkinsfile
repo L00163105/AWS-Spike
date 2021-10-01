@@ -20,7 +20,7 @@ pipeline {
       steps {
         parallel(
             "Sonar Analysis": { echo "perform sonar analysis" },
-            "Build/Deploy Docker Image": { echo "world" },
+            "Build/Push Docker Image": { echo "world" },
         )
       }
     }
@@ -31,9 +31,15 @@ pipeline {
       }
     }
 
-    stage('Deploy to Production') {
+    var master = env.BRANCH_NAME == "master"
+
+    stage('Deploy') {
       steps {
-        echo "Deploying to production " + buildUrl
+        if(master) {
+          echo "Deploying to production"
+        } else {
+          echo "Deploying to test"
+        }
       }
     }
   }
