@@ -18,6 +18,17 @@ pipeline {
         sh 'mvn test'
       }
     }
+
+    parallel Generte-Sonar-Reports: {
+      steps {
+        echo "This is the deploy step " + buildUrl
+      }
+    }, Build-docker-image-and-push: {
+      steps {
+        echo "This is the deploy step " + buildUrl
+      }
+    }, failFast: true
+
     stage('deploy') {
       steps {
         echo "This is the deploy step " + buildUrl
