@@ -20,15 +20,12 @@ pipeline {
     }
 
     stage('Run adfg') {
-      parallel performSonarAnalysis: {
-        steps {
-          echo "This is the deploy step " + buildUrl
-        }
-      }, buildAndPushDockerImage: {
-        steps {
-          echo "This is the deploy step " + buildUrl
-        }
-      }, failFast: true
+      parallel firstBranch: {
+        echo "This is the deploy step"
+      }, secondBranch: {
+        echo "This is the deploy step "
+      },
+          failFast: true|false
     }
 
     stage('deploy') {
