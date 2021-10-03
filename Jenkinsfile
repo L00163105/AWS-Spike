@@ -25,6 +25,13 @@ pipeline {
       }
     }
 
+    stage('Publish reports') {
+      steps {
+        publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: '/target/surefire-reports/com.ronan.githubactionsspike.GithubactionsspikeApplicationTests.txt', reportFiles: '', reportName: 'Test Report', reportTitles: '']),
+        junit()
+      }
+    }
+
     stage('Security Scan') {
       steps {
         echo "Deploying to test"
@@ -36,7 +43,7 @@ pipeline {
     stage('Deploy') {
       steps {
 //        if(master) {
-          echo "Deploying to production"
+        echo "Deploying to production"
 //        } else {
 //          echo "Deploying to test"
 //        }
