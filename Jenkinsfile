@@ -27,8 +27,10 @@ pipeline {
 
     stage('Publish reports') {
       steps {
-        publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: '/target/surefire-reports/com.ronan.githubactionsspike.GithubactionsspikeApplicationTests.txt', reportFiles: '', reportName: 'Test Report', reportTitles: '']),
-        junit()
+        publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: '/target/surefire-reports/com.ronan.githubactionsspike.GithubactionsspikeApplicationTests.txt', reportFiles: '', reportName: 'Test Report', reportTitles: ''])
+      }
+      steps{
+        junit();
       }
     }
 
