@@ -29,6 +29,9 @@ pipeline {
       steps {
         publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: '/target/surefire-reports/com.ronan.githubactionsspike.GithubactionsspikeApplicationTests.txt', reportFiles: '', reportName: 'Test Report', reportTitles: ''])
       }
+    }
+
+    stage('Archive JUnit Reports') {
       steps{
         junit();
       }
