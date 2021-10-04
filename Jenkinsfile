@@ -24,15 +24,6 @@ pipeline {
       }
     }
 
-    stage('Publish reports') {
-      steps {
-        parallel(
-            "Email L00163105": { echo "emailing team" },
-            "Email deploys": { echo "emailing deploys" },
-        )
-      }
-    }
-
     stage('Security Scan') {
       steps {
         echo "Performing Security Scan"
@@ -48,6 +39,15 @@ pipeline {
             echo 'Deploy to test'
           }
         }
+      }
+    }
+
+    stage('Email') {
+      steps {
+        parallel(
+            "Email L00163105": { echo "emailing team" },
+            "Email deploys": { echo "emailing deploys" },
+        )
       }
     }
   }
