@@ -38,11 +38,11 @@ pipeline {
     stage('Deploy') {
       steps {
         script {
-          echo '${env.BRANCH_NAME}'
-          if (env.BRANCH_NAME == 'main') {
-            echo 'I only execute on the master branch'
+          echo env.BRANCH_NAME
+          if (master) {
+            echo 'Deploy to production'
           } else {
-            echo 'I execute elsewhere'
+            echo 'Deploy to test'
           }
         }
       }
