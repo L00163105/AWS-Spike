@@ -14,11 +14,11 @@ pipeline {
       }
     }
 
-    stage('Reporting') {
+    stage('Sonar and Docker') {
       steps {
         parallel(
             "Sonar Analysis": { echo "perform sonar analysis" },
-            "Build/Push Docker Image": { echo "world" },
+            "Build/Push Docker Image": { echo "building and pushing docker image" },
         )
       }
     }
@@ -31,7 +31,7 @@ pipeline {
 
     stage('Security Scan') {
       steps {
-        echo "Deploying to test"
+        echo "Performing Security Scan"
       }
     }
 
