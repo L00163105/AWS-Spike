@@ -35,8 +35,8 @@ pipeline {
       }
     }
 
+    stage('Deploy') {
     if (master) {
-      stage('Deploy') {
         steps {
           echo "Deploying to production"
         }
