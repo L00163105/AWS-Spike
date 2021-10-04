@@ -38,7 +38,7 @@ pipeline {
     stage('Deploy') {
       steps {
         script {
-          echo 'addsfasdfasfdsadf' + env.BRANCH_NAME
+          println "${BRANCH_NAME}"
           if (env.BRANCH_NAME == 'main') {
             echo 'I only execute on the master branch'
           } else {
