@@ -34,12 +34,11 @@ pipeline {
         echo "Deploying to test"
       }
     }
-    stage('Deploy') {
-      steps {
-        if (master) {
+
+    if (master) {
+      stage('Deploy') {
+        steps {
           echo "Deploying to production"
-        } else {
-          echo "Deploying to test"
         }
       }
     }
