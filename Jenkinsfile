@@ -1,4 +1,4 @@
-def master = env.BRANCH_NAME == "master"
+def main = env.BRANCH_NAME == "master"
 pipeline {
 
   agent any
@@ -8,6 +8,7 @@ pipeline {
   }
 
   stages {
+
     stage('Build the application') {
       steps {
         sh 'mvn clean install'
@@ -25,7 +26,10 @@ pipeline {
 
     stage('Publish reports') {
       steps {
-        echo 'Emailing Test Reports'
+        parallel(
+            "Email L00163105": { echo "emailing team" },
+            "Email deploys": { echo "emailing deploys" },
+        )
       }
     }
 
@@ -38,8 +42,7 @@ pipeline {
     stage('Deploy') {
       steps {
         script {
-          echo env.BRANCH_NAME
-          if (master) {
+          if (main) {
             echo 'Deploy to production'
           } else {
             echo 'Deploy to test'
