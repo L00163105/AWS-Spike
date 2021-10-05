@@ -7,6 +7,10 @@ pipeline {
     maven 'maven_3.6.1'
   }
 
+  options {
+    parallelsAlwaysFailFast()
+  }
+
   stages {
 
     stage('Build the application') {
@@ -42,12 +46,18 @@ pipeline {
       }
     }
 
-    stage('Email') {
+    stage('Notafications') {
       steps {
         parallel(
             "Email L00163105": { echo "emailing team" },
-            "Email deploys": { echo "emailing deploys" },
+            "Slack Channel Notification": { echo "emailing deploys" },
         )
+      }
+    }
+
+    post {
+      always {
+        echo 'Clean up cache'
       }
     }
   }
